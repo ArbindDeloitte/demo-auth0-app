@@ -1,0 +1,60 @@
+<style>
+.ladwp-section{padding:16px 0;border-bottom:1px solid #e2e2e2;text-align:left}
+.ladwp-section h2{font-size:18px;font-weight:600;margin:0 0 12px;color:#1f1f1f}
+.ladwp-check{display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.4}
+.ladwp-check input[type=checkbox]{width:16px;height:16px;margin-top:2px;accent-color:#00629b;flex-shrink:0}
+.ladwp-label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+.ladwp-select,.ladwp-input{display:block;width:100%;box-sizing:border-box;height:36px;padding:0 8px;border:1px solid #757575;border-radius:2px;background:#fff;font-size:14px;font-family:inherit;color:#1f1f1f}
+.ladwp-input:focus{outline:none;border-color:#00629b;box-shadow:0 0 0 1px #00629b}
+.ladwp-link{color:#00629b;font-weight:700;text-decoration:underline}
+.ladwp-name-group{margin-bottom:14px}
+.ladwp-name-group:last-child{margin-bottom:0}
+.ladwp-error{display:none;margin-top:6px;padding:8px 10px;font-size:13px;color:#b00020;background:#fdecea;border-left:3px solid #b00020;text-align:left}
+.ladwp-error.show{display:block}
+.ladwp-input.has-error{border-color:#b00020;box-shadow:0 0 0 1px #b00020}
+.ladwp-check.has-error input[type=checkbox]{outline:2px solid #b00020;outline-offset:1px}
+</style>
+<div class="ladwp-section"><h2>Enter Customer Name</h2>
+<div class="ladwp-name-group"><label class="ladwp-label" for="ladwp-first-name">First Name</label>
+<input type="text" id="ladwp-first-name" name="ulp-first-name" class="ladwp-input" autocomplete="given-name"/></div>
+<div class="ladwp-name-group"><label class="ladwp-label" for="ladwp-last-name">Last Name</label>
+<input type="text" id="ladwp-last-name" name="ulp-last-name" class="ladwp-input" autocomplete="family-name"/></div></div>
+<div class="ladwp-section"><h2>Communications preference</h2>
+<label class="ladwp-check"><input type="checkbox" id="ladwp-comms" name="ulp-comms" checked/>
+<span>Yes I would like to receive updates and newsletters from LADWP. (Emergency and critical notifications will be automatically be sent to you whether or not you check this box)</span></label></div>
+<div class="ladwp-section"><h2>Language preference</h2>
+<select id="ladwp-lang" name="ulp-lang" class="ladwp-select"><option value="en" selected>English</option><option value="es">Español</option></select></div>
+<div class="ladwp-section"><h2>Terms &amp; Conditions</h2>
+<label class="ladwp-check"><input type="checkbox" id="ladwp-tc" name="ulp-tc"/>
+<span>I accept these <a class="ladwp-link" href="https://YOUR-TERMS-URL" target="_blank" rel="noopener">Terms and Conditions</a></span></label></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},
+PRI='[data-action-button-primary="true"]',
+tc=$('ladwp-tc'),first=$('ladwp-first-name'),last=$('ladwp-last-name');
+document.addEventListener('DOMContentLoaded',function(){
+var btn=document.querySelector(PRI);
+if(btn){btn.textContent='Next';btn.disabled=false}});
+function mk(id,msg,after){var e=document.createElement('div');e.id=id;e.className='ladwp-error';e.setAttribute('role','alert');e.textContent=msg;after.parentNode.insertBefore(e,after.nextSibling);return e}
+function blank(i){return!!i&&i.value.trim()===''}
+function setErr(i,e,on){if(!i||!e)return;e.classList.toggle('show',on);i.classList.toggle('has-error',on);i.setAttribute('aria-invalid',on?'true':'false')}
+var fErr=first&&mk('ladwp-first-name-error','First name cannot be blank.',first),
+lErr=last&&mk('ladwp-last-name-error','Last name cannot be blank.',last);
+if(first)first.addEventListener('input',function(){if(!blank(first))setErr(first,fErr,false)});
+if(last)last.addEventListener('input',function(){if(!blank(last))setErr(last,lErr,false)});
+var tcL,tcE;
+if(tc){tcL=tc.closest('.ladwp-check');tcE=mk('ladwp-tc-error','You must accept the Terms and Conditions to sign up.',tcL);
+tc.addEventListener('change',function(){if(tc.checked){tcE.classList.remove('show');tcL.classList.remove('has-error')}})}
+document.addEventListener('submit',function(e){
+var s=e.submitter;
+if(s?!s.matches(PRI):!(e.target.querySelector&&e.target.querySelector(PRI)))return;
+var btn=document.querySelector(PRI),bad=null;
+if(first){var fb=blank(first);setErr(first,fErr,fb);if(fb&&!bad)bad=first}
+if(last){var lb=blank(last);setErr(last,lErr,lb);if(lb&&!bad)bad=last}
+if(tc){var tb=!tc.checked;tcE.classList.toggle('show',tb);tcL.classList.toggle('has-error',tb);if(tb&&!bad)bad=tc}
+if(bad){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();bad.focus();bad.scrollIntoView({behavior:'smooth',block:'center'});if(btn)btn.disabled=false;return false}
+try{sessionStorage.setItem('ladwp_comms',$('ladwp-comms').checked);sessionStorage.setItem('ladwp_lang',$('ladwp-lang').value);
+if(first)sessionStorage.setItem('ladwp_first_name',first.value.trim());if(last)sessionStorage.setItem('ladwp_last_name',last.value.trim())}catch(x){}
+},true);
+})();
+</script>

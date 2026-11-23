@@ -1,0 +1,58 @@
+<style>
+  .ladwp-section { padding: 16px 0; border-bottom: 1px solid #e2e2e2; text-align: left; }
+  .ladwp-section h2 { font-size: 18px; font-weight: 600; margin: 0 0 12px; color: #1f1f1f; }
+  .ladwp-check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.4; }
+  .ladwp-check input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #00629b; flex-shrink: 0; }
+  .ladwp-label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .ladwp-select { width: 100%; height: 36px; padding: 0 8px; border: 1px solid #757575; border-radius: 2px; background: #fff; font-size: 14px; }
+  .ladwp-link { color: #00629b; font-weight: 700; text-decoration: underline; }
+
+  /* Customer name inputs */
+  .ladwp-input { display: block; width: 100%; box-sizing: border-box; height: 36px; padding: 0 8px; border: 1px solid #757575; border-radius: 2px; background: #fff; font-size: 14px; font-family: inherit; color: #1f1f1f; }
+  .ladwp-input:focus { outline: none; border-color: #00629b; box-shadow: 0 0 0 1px #00629b; }
+  .ladwp-name-group { margin-bottom: 14px; }
+  .ladwp-name-group:last-child { margin-bottom: 0; }
+</style>
+
+<!-- Customer name section (top of page) -->
+<div class="ladwp-section">
+  <h2>Enter Customer Name</h2>
+
+  <div class="ladwp-name-group">
+    <label class="ladwp-label" for="ladwp-first-name">First Name</label>
+    <input type="text" id="ladwp-first-name" name="ulp-first-name" class="ladwp-input" autocomplete="given-name" />
+  </div>
+
+  <div class="ladwp-name-group">
+    <label class="ladwp-label" for="ladwp-last-name">Last Name</label>
+    <input type="text" id="ladwp-last-name" name="ulp-last-name" class="ladwp-input" autocomplete="family-name" />
+  </div>
+</div>
+
+<div class="ladwp-section">
+  <h2>Communications preference</h2>
+  <label class="ladwp-check">
+    <input type="checkbox" id="ladwp-comms" name="ulp-comms" checked />
+    <span>Yes I would like to receive updates and newsletters from LADWP. (Emergency and critical notifications will be automatically be sent to you whether or not you check this box)</span>
+  </label>
+</div>
+
+<div class="ladwp-section">
+  <h2>Language preference</h2>
+  <select id="ladwp-lang" name="ulp-lang" class="ladwp-select">
+    <option value="en" selected>English</option>
+    <option value="es">Español</option>
+  </select>
+</div>
+
+<div class="ladwp-section">
+  <h2>Terms &amp; Conditions</h2>
+  <label class="ladwp-check">
+    <input type="checkbox" id="ladwp-tc" name="ulp-tc" />
+    <span>I accept these <a class="ladwp-link" href="https://YOUR-TERMS-URL" target="_blank" rel="noopener">Terms and Conditions</a></span>
+  </label>
+</div>
+
+<div class="ladwp-section" style="border-bottom:0; padding-bottom:0;">
+  <h2>Create Password</h2>
+</div>

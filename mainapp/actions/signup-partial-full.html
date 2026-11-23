@@ -1,0 +1,292 @@
+<style>
+  .ladwp-section { padding: 16px 0; border-bottom: 1px solid #e2e2e2; text-align: left; }
+  .ladwp-section h2 { font-size: 18px; font-weight: 600; margin: 0 0 12px; color: #1f1f1f; }
+  .ladwp-check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.4; }
+  .ladwp-check input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; accent-color: #00629b; flex-shrink: 0; }
+  .ladwp-label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .ladwp-select { width: 100%; height: 36px; padding: 0 8px; border: 1px solid #757575; border-radius: 2px; background: #fff; font-size: 14px; }
+  .ladwp-link { color: #00629b; font-weight: 700; text-decoration: underline; }
+
+  /* Customer name inputs */
+  .ladwp-input { display: block; width: 100%; box-sizing: border-box; height: 36px; padding: 0 8px; border: 1px solid #757575; border-radius: 2px; background: #fff; font-size: 14px; font-family: inherit; color: #1f1f1f; }
+  .ladwp-input:focus { outline: none; border-color: #00629b; box-shadow: 0 0 0 1px #00629b; }
+  .ladwp-name-group { margin-bottom: 14px; }
+  .ladwp-name-group:last-child { margin-bottom: 0; }
+</style>
+
+<!-- Customer name section (top of page) -->
+<div class="ladwp-section">
+  <h2>Enter Customer Name</h2>
+
+  <div class="ladwp-name-group">
+    <label class="ladwp-label" for="ladwp-first-name">First Name</label>
+    <input type="text" id="ladwp-first-name" name="ulp-first-name" class="ladwp-input" autocomplete="given-name" />
+  </div>
+
+  <div class="ladwp-name-group">
+    <label class="ladwp-label" for="ladwp-last-name">Last Name</label>
+    <input type="text" id="ladwp-last-name" name="ulp-last-name" class="ladwp-input" autocomplete="family-name" />
+  </div>
+</div>
+
+<div class="ladwp-section">
+  <h2>Communications preference</h2>
+  <label class="ladwp-check">
+    <input type="checkbox" id="ladwp-comms" name="ulp-comms" checked />
+    <span>Yes I would like to receive updates and newsletters from LADWP. (Emergency and critical notifications will be automatically be sent to you whether or not you check this box)</span>
+  </label>
+</div>
+
+<div class="ladwp-section">
+  <h2>Language preference</h2>
+  <select id="ladwp-lang" name="ulp-lang" class="ladwp-select">
+    <option value="en" selected>English</option>
+    <option value="es">Español</option>
+  </select>
+</div>
+
+<div class="ladwp-section">
+  <h2>Terms &amp; Conditions</h2>
+  <label class="ladwp-check">
+    <input type="checkbox" id="ladwp-tc" name="ulp-tc" />
+    <span>I accept these <a class="ladwp-link" href="https://YOUR-TERMS-URL" target="_blank" rel="noopener">Terms and Conditions</a></span>
+  </label>
+</div>
+
+<div class="ladwp-section" style="border-bottom:0; padding-bottom:0;">
+  <h2>Create Password</h2>
+</div>
+
+<!-- Confirm password field -->
+<div class="ulp-field ulp-password-field">
+  <div class="ulp-password-input-wrapper">
+    <input
+      type="password"
+      id="confirmPassword"
+      name="ulp-confirm-password"
+      placeholder="Confirm Password"
+      class="ulp-password-input"
+      autocomplete="new-password"
+    />
+
+    <button
+      type="button"
+      id="ladwp-confirm-toggle"
+      class="ulp-password-toggle"
+      aria-label="Show password"
+    >
+      <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+        <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.4 18.4 0 0 1 4.22-5.06" />
+        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+        <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+        <line x1="1" y1="1" x2="23" y2="23" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="ulp-error-info"
+    data-ulp-validation-function="validateConfirmPassword"
+    data-ulp-validation-event-listeners="change,input,blur"
+  >
+    Passwords do not match
+  </div>
+</div>
+
+<style>
+  .ulp-password-field { width: 100%; }
+
+  .ulp-password-input-wrapper { position: relative; width: 100%; }
+
+  .ulp-password-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 0 44px 0 16px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #374151;
+    background: #fff;
+    border: 1px solid #757575;
+    border-radius: 2px;
+    outline: none;
+  }
+  .ulp-password-input:focus {
+    border-color: #00629b;
+    box-shadow: 0 0 0 1px #00629b;
+  }
+
+  .ulp-password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 4px;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+  }
+  .ulp-password-toggle:hover { color: #374151; }
+  .ulp-password-toggle:focus-visible {
+    outline: 2px solid #00629b;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Native password field radius (button styling removed) */
+  input#password { border-radius: 2px !important; }
+
+  .ladwp-hint { font-size: 13px; color: #555; margin: 0 0 8px; text-align: left; }
+
+  /* Shared error style (T&C + name fields) */
+  .ladwp-error {
+    display: none;
+    margin-top: 6px;
+    padding: 8px 10px;
+    font-size: 13px;
+    color: #b00020;
+    background: #fdecea;
+    border-left: 3px solid #b00020;
+    text-align: left;
+  }
+  .ladwp-error.show { display: block; }
+  .ladwp-input.has-error { border-color: #b00020; box-shadow: 0 0 0 1px #b00020; }
+  .ladwp-check.has-error input[type="checkbox"] { outline: 2px solid #b00020; outline-offset: 1px; }
+</style>
+
+<script>
+  // Must stay global: Auth0 looks this up by name from data-ulp-validation-function
+  function validateConfirmPassword(element, formSubmitted) {
+    var passwordField = document.getElementById('password');
+    if (!passwordField) return true;
+
+    if (!formSubmitted && element.value.length === 0) return true;
+
+    return element.value === passwordField.value;
+  }
+
+  (function () {
+    var pwd     = document.getElementById('password');
+    var confirm = document.getElementById('confirmPassword');
+    var toggle  = document.getElementById('ladwp-confirm-toggle');
+    var btn     = document.querySelector('button[data-action-button-primary="true"]');
+    var tc      = document.getElementById('ladwp-tc');
+    var first   = document.getElementById('ladwp-first-name');
+    var last    = document.getElementById('ladwp-last-name');
+
+    // Show/hide confirm password
+    if (toggle && confirm) {
+      toggle.addEventListener('click', function () {
+        var isPassword = confirm.type === 'password';
+        confirm.type = isPassword ? 'text' : 'password';
+        toggle.querySelector('.icon-eye').style.display = isPassword ? 'none' : 'block';
+        toggle.querySelector('.icon-eye-off').style.display = isPassword ? 'block' : 'none';
+        toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+      });
+    }
+
+    // Re-run the confirm validation when the main password changes
+    if (pwd && confirm) {
+      pwd.addEventListener('input', function () {
+        if (confirm.value.length > 0) {
+          confirm.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      });
+    }
+
+    // Relabel primary button only, keep it clickable
+    if (btn) { btn.textContent = 'Next'; btn.disabled = false; }
+
+    // ---- Validation helpers ----
+    function makeError(id, message, afterEl) {
+      var el = document.createElement('div');
+      el.id = id;
+      el.className = 'ladwp-error';
+      el.setAttribute('role', 'alert');
+      el.textContent = message;
+      afterEl.parentNode.insertBefore(el, afterEl.nextSibling);
+      return el;
+    }
+
+    // Name fields
+    var firstErr = null, lastErr = null;
+    if (first) firstErr = makeError('ladwp-first-name-error', 'First name cannot be blank.', first);
+    if (last)  lastErr  = makeError('ladwp-last-name-error', 'Last name cannot be blank.', last);
+
+    function setNameError(input, err, show) {
+      if (!input || !err) return;
+      err.classList.toggle('show', show);
+      input.classList.toggle('has-error', show);
+      input.setAttribute('aria-invalid', show ? 'true' : 'false');
+    }
+
+    function nameBlank(input) { return !!input && input.value.trim() === ''; }
+
+    // Clear name errors as the user types
+    if (first) first.addEventListener('input', function () { if (!nameBlank(first)) setNameError(first, firstErr, false); });
+    if (last)  last.addEventListener('input',  function () { if (!nameBlank(last))  setNameError(last, lastErr, false); });
+
+    // T&C
+    var tcLabel = null, tcErr = null;
+    if (tc) {
+      tcLabel = tc.closest('.ladwp-check');
+      tcErr = makeError('ladwp-tc-error', 'You must accept the Terms and Conditions to sign up.', tcLabel);
+      tc.addEventListener('change', function () {
+        if (tc.checked) { tcErr.classList.remove('show'); tcLabel.classList.remove('has-error'); }
+      });
+    }
+
+    // Capture phase so this runs before Auth0's own submit handlers
+    document.addEventListener('submit', function (e) {
+      // Let "Go back" and other secondary submit buttons through
+      if (btn && e.submitter && e.submitter !== btn) return;
+
+      var firstBad = null; // first invalid field, in page order
+
+      if (first) {
+        var fBlank = nameBlank(first);
+        setNameError(first, firstErr, fBlank);
+        if (fBlank && !firstBad) firstBad = first;
+      }
+      if (last) {
+        var lBlank = nameBlank(last);
+        setNameError(last, lastErr, lBlank);
+        if (lBlank && !firstBad) firstBad = last;
+      }
+      if (tc) {
+        var tcBad = !tc.checked;
+        tcErr.classList.toggle('show', tcBad);
+        tcLabel.classList.toggle('has-error', tcBad);
+        if (tcBad && !firstBad) firstBad = tc;
+      }
+
+      if (firstBad) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        firstBad.focus();
+        firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Auth0 may disable the button on click; re-enable it
+        if (btn) btn.disabled = false;
+        return false;
+      }
+
+      try {
+        sessionStorage.setItem('ladwp_comms', document.getElementById('ladwp-comms').checked);
+        sessionStorage.setItem('ladwp_lang', document.getElementById('ladwp-lang').value);
+        if (first) sessionStorage.setItem('ladwp_first_name', first.value.trim());
+        if (last)  sessionStorage.setItem('ladwp_last_name', last.value.trim());
+      } catch (ex) {}
+    }, true);
+  })();
+</script>

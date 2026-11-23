@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+{% assign resolved_dir = dir | default: "auto" %}
+<html lang="{{locale}}" dir="{{resolved_dir}}">
+  <head>
+    {%- auth0:head -%}
+    <style>
+      :root {
+        --ladwp-navy: #0b1f33;
+        --ladwp-blue: #0a5a82;
+        --ladwp-blue-dark: #084a6b;
+        --ladwp-text: #1f2d3a;
+        --ladwp-border: #d7dde2;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        color: var(--ladwp-text);
+        height: 100%;
+      }
+
+      /* ---------- Top utility bar ---------- */
+      .ladwp-topbar {
+        background: var(--ladwp-navy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 24px;
+        font-size: 14px;
+      }
+      .ladwp-topbar .city {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .ladwp-topbar .city img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+      .ladwp-topbar .links {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .ladwp-topbar .links span {
+        background: #0b1f33;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        margin-right: 4px;
+      }
+
+      /* ---------- Main nav ---------- */
+      .ladwp-nav {
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 24px;
+        border-bottom: 1px solid var(--ladwp-border);
+      }
+      .ladwp-nav .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .ladwp-nav .brand .logo {
+        background: var(--ladwp-blue);
+        color: #fff;
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 1.1;
+        padding: 6px 8px;
+        border-radius: 3px;
+      }
+      .ladwp-nav .brand .name {
+        font-size: 13px;
+        color: var(--ladwp-blue);
+        line-height: 1.2;
+      }
+      .ladwp-nav .menu {
+        display: flex;
+        gap: 28px;
+        font-size: 15px;
+      }
+      .ladwp-nav .menu a {
+        color: var(--ladwp-text);
+        text-decoration: none;
+      }
+      .ladwp-nav .utils {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 14px;
+        color: var(--ladwp-blue);
+      }
+
+      /* ---------- Split hero ---------- */
+      .ladwp-hero {
+        position: relative;
+        min-height: calc(100vh - 110px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: var(--ladwp-blue);
+      }
+      .ladwp-hero .image-panel {
+        background-image: url("https://images.unsplash.com/photo-1444723121867-7a241cacace9?q=80&w=1600");
+        background-size: cover;
+        background-position: center;
+      }
+      .ladwp-hero .widget-panel {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 64px 24px;
+      }
+
+      /* Auth0 mounts the widget as a light-DOM host element; this wraps it */
+      .ladwp-widget-shell {
+        width: 100%;
+        max-width: 370px;
+      }
+      ._widget-auto-layout {
+        margin: 0 !important;
+      }
+
+      @media (max-width: 860px) {
+        .ladwp-hero { grid-template-columns: 1fr; }
+        .ladwp-hero .image-panel { min-height: 220px; }
+        .ladwp-nav .menu { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="ladwp-topbar">
+      <div class="city">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Seal_of_Los_Angeles%2C_California.svg/48px-Seal_of_Los_Angeles%2C_California.svg.png" alt="City of Los Angeles seal" />
+        LOS ANGELES
+      </div>
+      <div class="links">
+        <span>311</span> City Services &nbsp;&nbsp; <span>LA</span> City Directory
+      </div>
+    </header>
+
+    <nav class="ladwp-nav">
+      <div class="brand">
+        <div class="logo">LA<br/>DWP</div>
+        <div class="name">Los Angeles<br/>Department of<br/>Water &amp; Power</div>
+      </div>
+      <div class="menu">
+        <a href="#">Account</a>
+        <a href="#">Services</a>
+        <a href="#">About Us</a>
+      </div>
+      <div class="utils">
+        <span>&#9650; Outages</span>
+        <span>&#9742; Support</span>
+        <span>&#128269;</span>
+      </div>
+    </nav>
+
+    <main class="ladwp-hero">
+      <div class="image-panel"></div>
+      <div class="widget-panel">
+        <div class="ladwp-widget-shell">
+          {%- auth0:widget -%}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
